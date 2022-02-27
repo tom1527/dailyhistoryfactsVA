@@ -1,0 +1,53 @@
+<script type="text/html" data-template-name="voiceapp-intent">
+    <div class="form-row">
+        <label for="node-input-skillConfig"><i class="fa fa-tag"></i> Skill</label>
+        <input type="text" id="node-input-skillConfig" />
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-intents"><i class="fa fa-tag"></i> Intents</label>
+        <input type="text" id="node-input-intents">
+        <div class="form-tips" style="max-width:575px;">
+          Enter intents as a comma seperated list, e.g. "LAUNCH, ON_SCENE"
+        </div>
+    </div>
+  
+</script>
+
+<script type="text/html" data-help-name="voiceapp-intent">
+    <p>This node receives an IntentRequest when the user speaks a command that maps to an intent. The request object sent to your service includes the specific intent and any defined slot values.</p>
+</script>
+
+<script type="text/javascript">
+  RED.nodes.registerType('voiceapp-intent',{
+    category: 'voiceapp',
+    color:"#96d5e3",
+    defaults: {
+      name: {value:""},
+      skillConfig: {type:"voiceapp-config", required:true},
+      intents: {value:"LAUNCH"},
+    },
+    inputs:0,
+    outputs:1,
+    icon: "microphone.png",
+    label: function() {
+      if(this.name){
+        return this.name;
+      }else if(this.skillConfig){
+        var config = RED.nodes.node(this.skillConfig);
+        return config.skillname + " Intent";
+      }else{
+        return "Intent Request";
+      }
+    },
+    labelStyle: function() {
+      return this.name?"node_label_italic":"";
+    },
+    paletteLabel: function() {
+      return "Intent Request";
+    },
+  });
+</script>

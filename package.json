@@ -1,0 +1,24 @@
+{
+  "name": "dhf-nodered-voiceapp",
+  "version": "0.0.1",
+  "description": "An app for handling requests from the Daily History Facts Alexa Skill and Google Assistant Action.",
+  "scripts": {},
+  "repository": {},
+  "keywords": [],
+  "node-red": {
+    "nodes": {
+      "index": "nodes/intent/intent.js",
+      "config": "nodes/config/config.js"
+    }
+  },
+  "author": "twbradley@hotmail.co.uk",
+  "homepage": "https://www.dailyhistoryfacts.com/",
+  "main": "index.js",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "express": "^4.17.3",
+    "jovo-framework": "^3.6.1",
+    "jovo-platform-alexa": "^3.6.2",
+    "jovo-platform-googleassistantconv": "^3.6.3"
+  }
+}
