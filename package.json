@@ -8,7 +8,8 @@
   "node-red": {
     "nodes": {
       "index": "nodes/intent/intent.js",
-      "config": "nodes/config/config.js"
+      "config": "nodes/config/config.js",
+      "speak": "nodes/speak/speak.js"
     }
   },
   "author": "twbradley@hotmail.co.uk",
@@ -19,6 +20,7 @@
     "express": "^4.17.3",
     "jovo-framework": "^3.6.1",
     "jovo-platform-alexa": "^3.6.2",
-    "jovo-platform-googleassistantconv": "^3.6.3"
+    "jovo-platform-googleassistantconv": "^3.6.3",
+    "mustache": "^4.2.0"
   }
 }
