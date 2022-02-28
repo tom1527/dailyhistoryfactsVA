@@ -1,0 +1,75 @@
+<script type="text/html" data-template-name="voiceapp-card">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-cardType"><i class="fa fa-wrench"></i> Card Type</label>
+        <select id="node-input-cardType">
+            <option value="Simple">Simple</option>
+            <option value="Image">Image</option>
+        </select>
+    </div>
+    <div style class="form-row">
+        <label for="node-input-text"><i class="fa fa-tag"></i> Content</label>
+        <div style="height: 250px; min-height:150px;" class="node-text-editor" id="node-input-text"></div>
+    </div>
+    <div class="form-row" id="node-cardImage">
+        <label for="node-input-cardImage"><i class="fa fa-wrench"></i>Image URL</label>
+        <input type="text" id="node-input-cardImage">
+    </div> 
+  
+</script>
+
+<script type="text/html" data-help-name="voiceapp-card">
+    <p>A node that determines the type and content of a card for display on the assistant service.</p>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('voiceapp-card',{
+        category: 'voiceapp',
+        color:"#96d5e3",
+        defaults: {
+            name: {value:""},
+            cardTitle: {value:""},
+            cardType: {value:"Simple"},
+            cardImage: {value:""},
+            text: {value:"", required:true}
+        },
+        inputs:1,
+        outputs:1,
+        label: function() {
+            return this.name || "Card"
+        },
+        paletteLabel: function() {
+            return "Card";
+        },
+        oneditprepare: function() {
+            this.editor = RED.editor.createEditor({
+                id: 'node-input-text',
+                mode: 'ace/mode/text',
+                options: {
+                    wrap: true
+                },
+                value: this.text
+            }),
+            $("#node-cardImage").hide();
+            $("#node-input-cardType").on("change",function() {
+                if ($("#node-input-cardType").val() === "Image") {
+                    $("#node-cardImage").show();
+                } else {
+                    $("#node-cardImage").hide();
+                }
+            });
+        },
+        oneditsave: function() {
+            $("#node-input-text").val(this.editor.getValue());
+            this.editor.destroy();
+            delete this.editor;
+        },
+        oneditcancel: function() {
+            this.editor.destroy();
+            delete this.editor;
+        }
+    });
+</script>
