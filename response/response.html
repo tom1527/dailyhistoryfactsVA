@@ -1,0 +1,33 @@
+<script type="text/html" data-template-name="voiceapp-response">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i>Name</label>
+        <input type="text" id="node-input-name" placeholder="Name" />
+    </div>
+    <div class="form-row">
+        <label for="node-input-endsession"><i class="fa fa-wrench"></i> End Session?</label>
+        <input type="checkbox" id="node-input-endsession">
+</script>
+
+<script type="text/javascript">
+  RED.nodes.registerType('voiceapp-response',{
+    category: 'voiceapp',
+    color:"#96d5e3",
+    defaults: {
+      name: {value:""},
+      endsession: {value: false}
+    },
+    inputs:1,
+    outputs:0,
+    icon: "microphone.png",
+    align: "right",
+    label: function() {
+      return this.name || "Voice Assistant Response"
+    },
+    paletteLabel: function() {
+      return "Voice Assistant Response";
+    },
+    labelStyle: function() {
+      return this.name?"node_label_italic":"";
+    }
+  });
+</script>
