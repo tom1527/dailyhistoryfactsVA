@@ -10,15 +10,13 @@ module.exports = function(RED) {
       node.text = n.text;
       node.cardImage = n.cardImage;
       this.on("input", function (msg, send, done) {
-        if (msg.req) {
-          var renderedText = mustache.render(node.text, msg);
-          var renderedTitle = mustache.render(node.cardTitle, msg);
-          if(node.cardtype === "Image") {
-            var renderedImage = mustache.render(node.cardImage, msg);
-            msg.req.showImageCard(renderedTitle, renderedText, renderedImage);
-          } else {
-              msg.req.showSimpleCard(renderedTitle, renderedText);
-          }
+        var renderedText = mustache.render(node.text, msg);
+        var renderedTitle = mustache.render(node.cardTitle, msg);
+        if(node.cardType === "Image") {
+          var renderedImage = mustache.render(node.cardImage, msg);
+          msg.req.showImageCard(renderedTitle, renderedText, renderedImage);
+        } else {
+            msg.req.showSimpleCard(renderedTitle, renderedText);
         }
         send(msg);
       });
