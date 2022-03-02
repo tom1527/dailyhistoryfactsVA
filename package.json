@@ -10,7 +10,8 @@
       "index": "nodes/intent/intent.js",
       "config": "nodes/config/config.js",
       "speak": "nodes/speak/speak.js",
-      "card": "nodes/card/card.js"
+      "card": "nodes/card/card.js",
+      "response": "nodes/response/response.js"
     }
   },
   "author": "twbradley@hotmail.co.uk",
