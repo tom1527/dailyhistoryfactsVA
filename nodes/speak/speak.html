@@ -7,6 +7,13 @@
         <label for="node-input-text"><i class="fa fa-tag"></i>SSML Content</label>
         <div style="height: 250px; min-height:150px;" class="node-text-editor" id="node-input-text"></div>
     </div>
+    <div class="form-row">
+        <label for="node-input-suggestions"><i class="fa fa-tag"></i>Suggestions</label>
+        <input type="text" id="node-input-suggestions">
+        <div class="form-tips" style="max-width:575px;">
+          Enter suggestions as a comma seperated list, e.g. "Yes, No".
+        </div>
+    </div>
 </script>
 
 <script type="text/html" data-help-name="voiceapp-intent">
@@ -19,7 +26,8 @@
         color:"#96d5e3",
         defaults: {
             name: {value:""},
-            text: {value:"", required:true}
+            text: {value:"", required:true},
+            suggestions: {value:""},
         },
         inputs:1,
         outputs:1,
