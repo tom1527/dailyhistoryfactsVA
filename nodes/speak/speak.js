@@ -7,13 +7,14 @@ module.exports = function(RED) {
         var node = this;
         node.text = n.text;
         node.suggestions = n.suggestions;
+        const suggestions = node.suggestions.split(', ');
         this.on("input", function (msg, send, done) {
           if (msg.req) {
             var renderedMsg = mustache.render(node.text, msg);
             msg.req.ask(renderedMsg);
             if (msg.req.isGoogleAction()) {
                 if (node.suggestions.length) {  
-                    msg.req.$googleAction.showSuggestions(node.suggestions);   
+                    msg.req.$googleAction.showSuggestions(suggestions);   
                 }
             }
           }
