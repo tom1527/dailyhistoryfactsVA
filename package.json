@@ -19,9 +19,11 @@
   "main": "index.js",
   "license": "UNLICENSED",
   "dependencies": {
+    "actions-on-google": "^3.0.0",
     "express": "^4.17.3",
     "jovo-framework": "^3.6.1",
     "jovo-platform-alexa": "^3.6.2",
+    "jovo-platform-googleassistant": "^3.6.1",
     "jovo-platform-googleassistantconv": "^3.6.3",
     "mustache": "^4.2.0"
   }

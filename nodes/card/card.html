@@ -4,23 +4,24 @@
         <input type="text" id="node-input-name">
     </div>
     <div class="form-row">
-        <label for="node-input-cardType"><i class="fa fa-wrench"></i> Card Type</label>
-        <select id="node-input-cardType">
-            <option value="Simple">Simple</option>
-            <option value="Image">Image</option>
-        </select>
-    </div>
-    <div class="form-row">
         <label for="node-input-cardTitle"><i class="fa fa-tag"></i>Card Title</label>
         <input type="text" id="node-input-cardTitle" placeholder="Title">
     </div>  
-    <div style class="form-row">
+    <div class="form-row">
         <label for="node-input-text"><i class="fa fa-tag"></i> Content</label>
         <div style="height: 250px; min-height:150px;" class="node-text-editor" id="node-input-text"></div>
     </div>
     <div class="form-row" id="node-cardImage">
         <label for="node-input-cardImage"><i class="fa fa-wrench"></i>Image URL</label>
         <input type="text" id="node-input-cardImage">
+    </div> 
+    <div class="form-row" id="node-cardButtonTitle">
+        <label for="node-input-cardButtonTitle"><i class="fa fa-wrench"></i>Button label</label>
+        <input type="text" id="node-input-cardButtonTitle">
+    </div>
+    <div class="form-row" id="node-cardButtonUrl">
+        <label for="node-input-cardButtonUrl"><i class="fa fa-wrench"></i>Button URL</label>
+        <input type="text" id="node-input-cardButtonUrl">
     </div> 
   
 </script>
@@ -36,9 +37,10 @@
         defaults: {
             name: {value:""},
             cardTitle: {value:""},
-            cardType: {value:"Simple"},
+            text: {value:"", required:true},
             cardImage: {value:""},
-            text: {value:"", required:true}
+            cardButtonTitle: {value:""},
+            cardButtonUrl: {value:""}
         },
         inputs:1,
         outputs:1,
@@ -56,14 +58,6 @@
                     wrap: true
                 },
                 value: this.text
-            }),
-            $("#node-cardImage").hide();
-            $("#node-input-cardType").on("change",function() {
-                if ($("#node-input-cardType").val() === "Image") {
-                    $("#node-cardImage").show();
-                } else {
-                    $("#node-cardImage").hide();
-                }
             });
         },
         oneditsave: function() {
