@@ -12,51 +12,46 @@ module.exports = function(RED) {
       node.cardButtonUrl = n.cardButtonUrl;
 
       this.on("input", function (msg, send, done) {
-        //var text = mustache.render(node.text, msg);
-        /* var title = mustache.render(node.cardTitle, msg);
-        var image = mustache.render(node.cardImage, msg);
-        var buttonTitle = mustache.render(node.cardButtonTitle, msg);
-        var buttonUrl = mustache.render(node.cardButtonUrl, msg); */
+
+        var cardPropeties = {};
+        if(node.text) {
+          var text = mustache.render(node.text, msg);
+          cardPropeties = (text);
+        } else {
+          var text = "";
+        }
+
+        if(node.cardTitle) {
+          var title = mustache.render(node.cardTitle, msg);
+          cardPropeties += title;
+        } else {
+          var title = "";
+        }
+
+        if(node.cardImage) {
+          var image = mustache.render(node.cardImage, msg);
+          cardPropeties += image;
+        } else {
+          var image = "";
+        }
+
+        if(node.cardButtonUrl) {
+          var buttonTitle = mustache.render(node.cardButtonTitle, msg);
+          var buttonUrl = mustache.render(node.cardButtonUrl, msg);
+          cardPropeties += button;
+        } else {
+          var button = "";
+        }
 
         if(msg.req.isAlexaSkill()) {
-          if(node.cardType === "Image") {
-            msg.req.showImageCard(renderedTitle, renderedText, renderedImage);
+          if(image) {
+            msg.req.showImageCard(title, text, image);
           } else {
-            msg.req.showSimpleCard(renderedTitle, renderedText);
+            msg.req.showSimpleCard(title, text);
           }
         }
 
         if(msg.req.isGoogleAction()) {
-          var cardPropeties = {};
-          if(node.text) {
-            var text = mustache.render(node.text, msg);
-            cardPropeties = (text);
-          } else {
-            var text = "";
-          }
-
-          if(node.cardTitle) {
-            var title = mustache.render(node.cardTitle, msg);
-            cardPropeties += title;
-          } else {
-            var title = "";
-          }
-
-          if(node.cardImage) {
-            var image = mustache.render(node.cardImage, msg);
-            cardPropeties += image;
-          } else {
-            var image = "";
-          }
-
-          if(node.cardButtonUrl) {
-            var buttonTitle = mustache.render(node.cardButtonTitle, msg);
-            var buttonUrl = mustache.render(node.cardButtonUrl, msg);
-            cardPropeties += button;
-          } else {
-            var button = "";
-          }
-
           msg.req.$googleAction.addBasicCard({
             ...(title) && {title: title},
             ...(text)  && {text: text},
